@@ -5,7 +5,11 @@ namespace TasksWebApi
 {
      public class TasksDbContext : DbContext
     {
-        private string _connectionStr = "Server=.\\SQLEXPRESS;Database=Tasks;User Id=Togal;Password=1234;";
+        public TasksDbContext(DbContextOptions<TasksDbContext> options):base(options)
+        {
+
+        }
+        //private string _connectionStr = "Server=.\\SQLEXPRESS;Database=Tasks;User Id=Togal;Password=1234;";
         public DbSet<Task> ToDos { get; set; }
         public DbSet<User> Users { get; set; }
 
@@ -23,9 +27,9 @@ namespace TasksWebApi
                 .IsRequired();
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(_connectionStr);
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer(_connectionStr);
+        //}
     }
 }

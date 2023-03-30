@@ -42,7 +42,7 @@ namespace TasksWebApi
             var authenticationSettings = new AuthenticationSettings();
 
             Configuration.GetSection("Authentication").Bind(authenticationSettings);
-
+            services.AddDbContext<TasksDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ConnStr")));
             services.AddSingleton(authenticationSettings);
             services.AddAuthentication(option =>
             {
